@@ -39,4 +39,36 @@ typedef struct instruction_s
 		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*main*/
+void findOpcodes(FILE *holyGrail);
+void checkOpcodes(int line_number, stack_t **stack);
+/*linkedList*/
+stack_t *new_head(stack_t **head, const int n);
+size_t printList(const stack_t *h);
+void freeList(stack_t *head);
+/*ops1*/
+void pushOp(stack_t **stack, unsigned int line_number);
+void pallOp(stack_t **stack, unsigned int line_number);
+void pintOp(stack_t **stack, unsigned int line_number);
+void popOp(stack_t **stack, unsigned int line_number);
+void swapOp(stack_t **stack, unsigned int line_number);
+/*ops2*/
+void addOp(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+/*advanced*/
+void subOp(stack_t **stack, unsigned int line_number);
+void divOp(stack_t **stack, unsigned int line_number);
+void mulOp(stack_t **stack, unsigned int line_number);
+/*ops3*/
+void modOp(stack_t **stack, unsigned int line_number);
+void pcharOp(stack_t **stack, unsigned int line_number);
+void pstrOp(stack_t **stack, unsigned int line_number);
+void rotlOp(stack_t **stack, unsigned int line_number);
+void rotrOp(stack_t **stack, unsigned int line_number);
+/*ops4*/
+void stackOp(stack_t **stack, unsigned int line_number);
+void queueOp(stack_t **stack, unsigned int line_number);
+
+extern char *opCommand[];
+
 #endif /*MONTY_H*/
