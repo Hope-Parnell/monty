@@ -81,6 +81,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"pint", pintOp},
 		{"pop", popOp},
 		{"swap", swapOp},
+		{"add", addOp},
 		{NULL, NULL}
 	};
 	for (i = 0; opFunction[i].opcode != NULL; i++)
