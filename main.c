@@ -46,7 +46,7 @@ void findOpcodes(FILE *holyGrail)
 	char *opcode = NULL;
 	stack_t *stack = NULL;
 
-	for (line_number = 0; lineCheck != EOF; line_number++)
+	for (line_number = 1; lineCheck != EOF; line_number++)
 	{
 		lineCheck = getline(&opcode, &opLenth, holyGrail);
 		opCommand[0] = strtok(opcode, " \n");
@@ -67,6 +67,8 @@ void checkOpcodes(int line_number, 	stack_t **stack)
 	instruction_t opFunction[] = {
 		{"push", pushOp},
 		{"pall", pallOp},
+		{"pint", pintOp},
+		{"pop", popOp},
 		{NULL, NULL}
 	};
 	for (i = 0; opFunction[i].opcode != NULL; i++)
@@ -80,7 +82,7 @@ void checkOpcodes(int line_number, 	stack_t **stack)
 	}
 	if (opCheck != 1)
 	{
-		dprintf(STDERR_FILENO, "L<%u: unknown instruction %s\n", line_number, opCommand[0]);
+		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", line_number, opCommand[0]);
 		exit(EXIT_FAILURE);
 	}
 }

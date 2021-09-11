@@ -17,9 +17,53 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	}
 	new_head(stack, n);
 }
+
+
+
 void pallOp(stack_t **stack, unsigned int line_number)
 {
 	if(*stack)
 		printList(*stack);
 	(void)line_number;
+}
+
+void pintOp(stack_t **stack, unsigned int line_number)
+{
+	stack_t *seek;
+
+	if (!*stack)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	seek = *stack;
+	while (seek->prev)
+		seek = seek->prev;
+	printf("%i\n", seek->n);
+}
+
+
+
+void popOp(stack_t **stack, unsigned int line_number)
+{
+	stack_t *hide;
+
+	if (!*stack)
+	{
+		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	hide = *stack;
+	while(hide->prev)
+		hide = hide->prev;
+	if (hide->next)
+		hide->next->prev = NULL;
+	if (hide == *stack)
+	{
+		if ((*stack)->next)
+			*stack = (*stack)->next;
+		else
+			*stack = NULL;
+	}
+	free(hide);
 }
