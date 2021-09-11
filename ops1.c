@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * pushOp - performs the push opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
+
 void pushOp(stack_t **stack, unsigned int line_number)
 {
 	int n;
@@ -8,7 +14,7 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
-	}	
+	}
 	n = atoi(opCommand[1]);
 	if (n == 0 && opCommand[1][0] != '0')
 	{
@@ -18,14 +24,24 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	new_head(stack, n);
 }
 
-
+/**
+ * pallOp - performs the pall opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
 
 void pallOp(stack_t **stack, unsigned int line_number)
 {
-	if(*stack)
+	if (*stack)
 		printList(*stack);
 	(void)line_number;
 }
+
+/**
+ * pintOp - performs the pint opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
 
 void pintOp(stack_t **stack, unsigned int line_number)
 {
@@ -42,7 +58,11 @@ void pintOp(stack_t **stack, unsigned int line_number)
 	printf("%i\n", seek->n);
 }
 
-
+/**
+ * popOp - performs the pop opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
 
 void popOp(stack_t **stack, unsigned int line_number)
 {
@@ -54,7 +74,7 @@ void popOp(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	hide = *stack;
-	while(hide->prev)
+	while (hide->prev)
 		hide = hide->prev;
 	if (hide->next)
 		hide->next->prev = NULL;
@@ -68,12 +88,16 @@ void popOp(stack_t **stack, unsigned int line_number)
 	free(hide);
 }
 
-
+/**
+ * swapOp - performs the swap opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
 
 void swapOp(stack_t **stack, unsigned int line_number)
 {
 	stack_t *seek, *swap;
-	
+
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);

@@ -11,7 +11,7 @@ char *opCommand[2] = {NULL, NULL};
  * @ac: argument counter
  * @av: array of argument strings
  *
- * Return: success or failure
+ * Return: success exit with failure
  */
 
 int main(int ac, char **av)
@@ -36,7 +36,10 @@ int main(int ac, char **av)
 
 }
 
-
+/**
+ * findOpcodes - checks the file line by line for opcodes
+ * @holyGrail: file stream of the input file
+ */
 
 void findOpcodes(FILE *holyGrail)
 {
@@ -62,7 +65,13 @@ void findOpcodes(FILE *holyGrail)
 	free(opcode);
 }
 
-void checkOpcodes(int line_number, 	stack_t **stack)
+/**
+ * checkOpcodes - checks for and runs the opcode
+ * @line_number: line number the opcode came from
+ * @stack: doubly linked list of the stack
+ */
+
+void checkOpcodes(int line_number, stack_t **stack)
 {
 	int i, opCheck = 0;
 
@@ -77,7 +86,7 @@ void checkOpcodes(int line_number, 	stack_t **stack)
 	for (i = 0; opFunction[i].opcode != NULL; i++)
 	{
 		if (strcmp(opFunction[i].opcode, opCommand[0]) == 0)
-		{	
+		{
 			opFunction[i].f(stack, line_number);
 			opCheck = 1;
 			break;
@@ -85,7 +94,8 @@ void checkOpcodes(int line_number, 	stack_t **stack)
 	}
 	if (opCheck != 1)
 	{
-		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", line_number, opCommand[0]);
+		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
+				 line_number, opCommand[0]);
 		exit(EXIT_FAILURE);
 	}
 }
