@@ -46,9 +46,11 @@ void findOpcodes(FILE *holyGrail)
 	char *opcode = NULL;
 	stack_t *stack = NULL;
 
-	for (line_number = 1; lineCheck != EOF; line_number++)
+	for (line_number = 1; ; line_number++)
 	{
 		lineCheck = getline(&opcode, &opLenth, holyGrail);
+		if (lineCheck == EOF)
+			break;
 		opCommand[0] = strtok(opcode, " \n");
 		if (!opCommand[0])
 			opCommand[0] = strtok(NULL, " \n");
@@ -69,6 +71,7 @@ void checkOpcodes(int line_number, 	stack_t **stack)
 		{"pall", pallOp},
 		{"pint", pintOp},
 		{"pop", popOp},
+		{"swap", swapOp},
 		{NULL, NULL}
 	};
 	for (i = 0; opFunction[i].opcode != NULL; i++)

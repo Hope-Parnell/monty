@@ -67,3 +67,26 @@ void popOp(stack_t **stack, unsigned int line_number)
 	}
 	free(hide);
 }
+
+
+
+void swapOp(stack_t **stack, unsigned int line_number)
+{
+	stack_t *seek, *swap;
+	
+	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
+	{
+		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	for (seek = *stack; seek->prev; seek = seek->prev)
+	;
+	swap = seek->next;
+	if (swap->next)
+		seek->next = swap->next;
+	else
+		seek->next = NULL;
+	swap->prev = NULL;
+	swap->next = seek;
+	seek->prev = swap;
+}
