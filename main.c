@@ -90,6 +90,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"mul", mulOp},
 		{"pchar", pcharOp},
 		{"pstr", pstrOp},
+		{"rotl", rotlOp},
 		{"nop", NULL},
 		{NULL, NULL}
 	};

@@ -51,3 +51,28 @@ void pstrOp(stack_t **stack, unsigned int line_number)
 	putchar('\n');
 	(void)line_number;
 }
+
+/**
+ * rotlOp - performs the rotl opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
+
+void rotlOp(stack_t **stack, unsigned int line_number)
+{
+	stack_t *seek, *last;
+	int n;
+
+	if (!*stack)
+		return;
+	for (seek = *stack; seek->prev; seek = seek->prev)
+	;
+	for (last = *stack; last->next != NULL; last = last->next)
+	;
+	if(seek == last)
+		return;
+	n = seek->n;
+	seek->n = last->n;
+	last->n = n;
+	(void)line_number;
+}
