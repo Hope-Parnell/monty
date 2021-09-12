@@ -52,7 +52,8 @@ Usage: push <int\>
 * pushes the vaule to the stack
 #### pall
 Usage: pall
-* prints the stack
+* prints all the values in the stack
+* prints nothing if the stack is empty
 ```
 julien@ubuntu:~/monty$ cat -e bytecodes/00.m
 push 1$
@@ -67,6 +68,7 @@ julien@ubuntu:~/monty$
 ```
 ### pint
 Usage: pint
+* prints the value at the top of the stack
 * returns an error and exits with failure if stack is empty
 ```
 julien@ubuntu:~/monty$ cat bytecodes/06.m
@@ -78,6 +80,38 @@ julien@ubuntu:~/monty$ ./monty bytecodes/06.m
 3
 julien@ubuntu:~/monty$ 
 ```
-#### Error
+Error:\
 L<line_number>: can't pint, stack empty
 * where <line_number\> is the line of the monty file where the error occurred
+### pop
+Usage: pop
+* removes the top value of the stack
+* returns an error and exits with failure if stack is empty
+```
+julien@ubuntu:~/monty$ cat bytecodes/07.m 
+push 1
+push 2
+push 3
+pall
+pop
+pall
+pop
+pall
+pop
+pall
+julien@ubuntu:~/monty$ ./monty bytecodes/07.m 
+3
+2
+1
+2
+1
+1
+julien@ubuntu:~/monty$ 
+```
+Error:\
+L<line_number>: can't pop an empty stack
+* where <line_number\> is the line of the monty file where the error occurred
+## Authors and acknowledgment
+Hope Parnell (3251@holbertonschool.com)
+## Project status
+Complete
