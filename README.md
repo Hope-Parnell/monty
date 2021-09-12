@@ -145,14 +145,19 @@ where <line_number\> is the line of the monty file where the error occurred
 Perform mathmatical operations of the first two values in the stack storing the result in place of the second value and removing the first value\
 Usage: add
 * adds the top two values of the stack\
+
 Usage: sub
 * subtracts the first value of the stack from the second value of the stack\
+
 Usage: div
 * divides the second value of the stack by the first value of the stack\
+
 Usage: mod
 * divides the second value of the stack by the first value of the stack and stores the remainder\
+
 Usage: mul
 * multiples the top two values of the stack\
+
 Error:
 ```
 L<line_number>: can't <op>, stack too short
