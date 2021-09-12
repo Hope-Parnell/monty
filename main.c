@@ -88,6 +88,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"div", divOp},
 		{"mod", modOp},
 		{"mul", mulOp},
+		{"pchar", pcharOp},
 		{"nop", NULL},
 		{NULL, NULL}
 	};
