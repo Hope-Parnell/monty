@@ -84,7 +84,7 @@ Error:
 ```
 L<line_number>: can't pint, stack empty
 ```
-where <line_number\> is the line of the monty file where the error occurred
+<line_number\> is the line of the monty file where the error occurred
 ### pop
 Usage: pop
 * removes the top value of the stack
@@ -114,7 +114,57 @@ Error:
 ```
 L<line_number>: can't pop an empty stack
 ```
+<line_number\> is the line of the monty file where the error occurred
+### swap
+Usage: swap
+* swaps the top two values of the stack
+* returns an error and exits with failure if stack has less than two values
+```
+julien@ubuntu:~/monty$ cat bytecodes/09.m 
+push 1
+push 2
+push 3
+pall
+swap
+pall
+julien@ubuntu:~/monty$ ./monty bytecodes/09.m 
+3
+2
+1
+2
+3
+1
+julien@ubuntu:~/monty$ 
+```
+Error
+```
+L<line_number>: can't swap, stack too short
+```
 where <line_number\> is the line of the monty file where the error occurred
+### Mathmatical Operations
+Perform mathmatical operations of the first two values in the stack storing the result in place of the second value and removing the first value\
+Usage: add
+* adds the top two values of the stack
+Usage: sub
+* subtracts the first value of the stack from the second value of the stack
+Usage: div
+* divides the second value of the stack by the first value of the stack
+Usage: mod
+* divides the second value of the stack by the first value of the stack and stores the remainder
+Usage: mul
+* multiples the top two values of the stack
+Error:
+```
+L<line_number>: can't <op>, stack too short
+```
+<line_number\> is the line of the monty file where the error occurred\
+<op\> is the opcode used
+### nop
+Usage: nop
+does nothing
+### Comments
+Usage: \#
+* starting a line with a \# will dennote a comment and will therefore be skipped over
 ## Authors and acknowledgment
 Hope Parnell (3251@holbertonschool.com)
 ## Project status
