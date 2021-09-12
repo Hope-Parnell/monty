@@ -80,7 +80,7 @@ julien@ubuntu:~/monty$ ./monty bytecodes/06.m
 3
 julien@ubuntu:~/monty$ 
 ```
-Error:\
+Error:
 ```
 L<line_number>: can't pint, stack empty
 ```
@@ -110,7 +110,7 @@ julien@ubuntu:~/monty$ ./monty bytecodes/07.m
 1
 julien@ubuntu:~/monty$ 
 ```
-Error:\
+Error:
 ```
 L<line_number>: can't pop an empty stack
 ```
