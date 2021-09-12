@@ -47,7 +47,7 @@ julien@ubuntu:~/monty$
 	* where <file> is the path to the file containing Monty byte code
 ### Examples
 #### push
-Usage: push /<int>
+Usage: push <int \>
 * where int is an integer
 * pushes the vaule to the stack
 #### pall
@@ -80,4 +80,4 @@ julien@ubuntu:~/monty$
 ```
 #### Error
 L<line_number>: can't pint, stack empty
-* where /<line_number> is the line of the monty file where the error occurred
+* where <line_number \> is the line of the monty file where the error occurred
