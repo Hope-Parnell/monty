@@ -99,7 +99,10 @@ stack_t *new_tail(stack_t **head, const int n)
 
 	new = malloc(sizeof(stack_t));
 	if (!new)
-		return (NULL);
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	new->n = n;
 	new->next = NULL;
 	if (!*head)/*no current nodes*/
