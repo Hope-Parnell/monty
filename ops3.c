@@ -60,19 +60,21 @@ void pstrOp(stack_t **stack, unsigned int line_number)
 
 void rotlOp(stack_t **stack, unsigned int line_number)
 {
-	stack_t *seek, *last;
-	int n;
+	stack_t *first, *last;
 
 	if (!*stack)
 		return;
-	for (seek = *stack; seek->prev; seek = seek->prev)
+	for (first = *stack; first->prev; first = first->prev)
 	;
 	for (last = *stack; last->next != NULL; last = last->next)
 	;
-	if(seek == last)
+	if(first == last)
 		return;
-	n = seek->n;
-	seek->n = last->n;
-	last->n = n;
+	if (first == *stack)
+		*stack = first->next;
+	first->next->prev = NULL;
+	first->next = NULL;
+	first->prev = last;
+	last->next = first;
 	(void)line_number;
 }
