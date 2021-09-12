@@ -57,6 +57,8 @@ void findOpcodes(FILE *holyGrail)
 		opCommand[0] = strtok(opcode, " \n");
 		if (!opCommand[0])
 			opCommand[0] = strtok(NULL, " \n");
+		if (opCommand[0][0] == '#')
+			continue;
 		opCommand[1] = strtok(NULL, " \n");
 		checkOpcodes(line_number, &stack);
 	}
