@@ -81,8 +81,8 @@ julien@ubuntu:~/monty$ ./monty bytecodes/06.m
 julien@ubuntu:~/monty$ 
 ```
 Error:\
-L<line_number>: can't pint, stack empty
-* where <line_number\> is the line of the monty file where the error occurred
+	L<line_number>: can't pint, stack empty
+where <line_number\> is the line of the monty file where the error occurred
 ### pop
 Usage: pop
 * removes the top value of the stack
@@ -109,8 +109,8 @@ julien@ubuntu:~/monty$ ./monty bytecodes/07.m
 julien@ubuntu:~/monty$ 
 ```
 Error:\
-L<line_number>: can't pop an empty stack
-* where <line_number\> is the line of the monty file where the error occurred
+	L<line_number>: can't pop an empty stack
+where <line_number\> is the line of the monty file where the error occurred
 ## Authors and acknowledgment
 Hope Parnell (3251@holbertonschool.com)
 ## Project status
