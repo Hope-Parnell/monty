@@ -46,6 +46,7 @@ void checkOpcodes(int line_number, stack_t **stack);
 stack_t *new_head(stack_t **head, const int n);
 size_t printList(const stack_t *h);
 void freeList(stack_t *head);
+stack_t *new_tail(stack_t **head, const int n);
 /*ops1*/
 void pushOp(stack_t **stack, unsigned int line_number);
 void pallOp(stack_t **stack, unsigned int line_number);
@@ -64,9 +65,7 @@ void pcharOp(stack_t **stack, unsigned int line_number);
 void pstrOp(stack_t **stack, unsigned int line_number);
 void rotlOp(stack_t **stack, unsigned int line_number);
 void rotrOp(stack_t **stack, unsigned int line_number);
-/*ops4*/
-void stackOp(stack_t **stack, unsigned int line_number);
-void queueOp(stack_t **stack, unsigned int line_number);
+void stackQOp(stack_t **stack, unsigned int line_number);
 
 extern char *opCommand[];
 

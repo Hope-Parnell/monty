@@ -84,3 +84,36 @@ void freeList(stack_t *head)
 		free(hide);
 	}
 }
+
+/**
+ * new_tail - adds a node to the end of a doubly linked list
+ * @head: pointer to the list
+ * @n: integer value to store in the node
+ *
+ * Return: pointer to new node, NULL on failure
+ */
+
+stack_t *new_tail(stack_t **head, const int n)
+{
+	stack_t *new, *tail;
+
+	new = malloc(sizeof(stack_t));
+	if (!new)
+		return (NULL);
+	new->n = n;
+	new->next = NULL;
+	if (!*head)/*no current nodes*/
+	{
+		new->prev = NULL;
+		*head = new;
+	}
+	else
+	{
+		tail = *head;
+		while (tail->next)/*find the tail*/
+			tail = tail->next;
+		tail->next = new;
+		new->prev = tail;
+	}
+	return (new);
+}

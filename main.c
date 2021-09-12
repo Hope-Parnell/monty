@@ -3,7 +3,7 @@
 
 void test(void);
 
-char *opCommand[2] = {NULL, NULL};
+char *opCommand[3] = {NULL, NULL, "stack"};
 
 
 /**
@@ -91,6 +91,9 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"pchar", pcharOp},
 		{"pstr", pstrOp},
 		{"rotl", rotlOp},
+		{"rotr", rotrOp},
+		{"stack", stackQOp},
+		{"queue", stackQOp},
 		{"nop", NULL},
 		{NULL, NULL}
 	};

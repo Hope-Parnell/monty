@@ -21,7 +21,10 @@ void pushOp(stack_t **stack, unsigned int line_number)
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	new_head(stack, n);
+	if (strcmp("queue", opCommand[2]) == 0)
+		new_tail(stack, n);
+	else
+		new_head(stack, n);
 }
 
 /**

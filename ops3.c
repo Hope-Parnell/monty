@@ -68,7 +68,7 @@ void rotlOp(stack_t **stack, unsigned int line_number)
 	;
 	for (last = *stack; last->next != NULL; last = last->next)
 	;
-	if(first == last)
+	if (first == last)
 		return;
 	if (first == *stack)
 		*stack = first->next;
@@ -76,5 +76,46 @@ void rotlOp(stack_t **stack, unsigned int line_number)
 	first->next = NULL;
 	first->prev = last;
 	last->next = first;
+	(void)line_number;
+}
+
+/**
+ * rotrOp - performs the rotr opcode
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
+
+void rotrOp(stack_t **stack, unsigned int line_number)
+{
+	stack_t *first, *last;
+
+	if (!*stack)
+		return;
+	for (first = *stack; first->prev; first = first->prev)
+	;
+	for (last = *stack; last->next != NULL; last = last->next)
+	;
+	if (first == last)
+		return;
+	last->prev->next = NULL;
+	last->prev = NULL;
+	first->prev = last;
+	last->next = first;
+	(void)line_number;
+}
+
+/**
+ * stackQOp - performs the stack/queue opcodes
+ * @stack: doubly linked list containing the stack
+ * @line_number: line number the opcode came from
+ */
+
+void stackQOp(stack_t **stack, unsigned int line_number)
+{
+	if (strcmp(opCommand[0], "stack") == 0)
+		opCommand[2] = "stack";
+	if (strcmp(opCommand[0], "queue") == 0)
+		opCommand[2] = "queue";
+	(void)stack;
 	(void)line_number;
 }
