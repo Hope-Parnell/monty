@@ -43,8 +43,20 @@ pall This is the end of our program. Monty is awesome!$
 julien@ubuntu:~/monty$
 ```
 ## Usage
-	monty file
-	* where <file> is the path to the file containing Monty byte code
+```
+	monty <file>
+```
+<file\> is the path to the file containing Monty byte code
+###Errors
+All errors will exit with EXIT_FAILURE
+```
+Error: Can't open file <file>
+Error: malloc failed
+L<line_number>: unknown instruction <opcode>
+```
+<file\> is the input file\
+<line_number\> is the line of the monty file where the error occurred\
+<opcode\> is the attempted input from <line_number\>
 ### Examples
 #### push
 Usage: push <int\>
@@ -142,21 +154,22 @@ L<line_number>: can't swap, stack too short
 ```
 where <line_number\> is the line of the monty file where the error occurred
 ### Mathmatical Operations
-Perform mathmatical operations of the first two values in the stack storing the result in place of the second value and removing the first value\
+Perform mathmatical operations of the first two values in the stack storing the result in place of the second value and removing the first value
+
 Usage: add
-* adds the top two values of the stack\
+* adds the top two values of the stack
 
 Usage: sub
-* subtracts the first value of the stack from the second value of the stack\
+* subtracts the first value of the stack from the second value of the stack\\
 
 Usage: div
-* divides the second value of the stack by the first value of the stack\
+* divides the second value of the stack by the first value of the stack
 
 Usage: mod
-* divides the second value of the stack by the first value of the stack and stores the remainder\
+* divides the second value of the stack by the first value of the stack and stores the remainder
 
 Usage: mul
-* multiples the top two values of the stack\
+* multiples the top two values of the stack
 
 Error:
 ```
@@ -170,6 +183,34 @@ does nothing
 ### Comments
 Usage: \#
 * starting a line with a \# will dennote a comment and will therefore be skipped over
+### pchar
+Usage: pchar
+* prints the char at the top of the stack
+* integer stored at the top of the stack is treated as the ascii value of the character to be printed
+* fails if the value stored in the top is not an ASCII value
+```
+julien@ubuntu:~/monty$ cat bytecodes/28.m 
+push 72
+pchar
+julien@ubuntu:~/monty$ ./monty bytecodes/28.m 
+H
+julien@ubuntu:~/monty$
+```
+Errors:
+```
+L<line_number>: can't pchar, value out of range
+L<line_number>: can't pchar, stack empty
+```
+<line_number\> is the line of the monty file where the error occurred
+### pstr
+Usage: pstr
+* prints the string starting at the top of the stack, followed by a new line
+* integer stored in each element of the stack is treated as the ascii value of the character to be printed
+* The string stops when either:
+	- the stack is over
+	- the value of the element is 0
+	- the value of the element is not in the ascii table
+* If the stack is empty, prints only a new line
 ## Authors and acknowledgment
 Hope Parnell (3251@holbertonschool.com)
 ## Project status
