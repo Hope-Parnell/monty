@@ -80,4 +80,4 @@ julien@ubuntu:~/monty$
 ```
 #### Error
 L<line_number>: can't pint, stack empty
-* where<linenumber> is the line of the monty file where the error occurred
+* where linenumber is the line of the monty file where the error occurred
