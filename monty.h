@@ -57,9 +57,9 @@ void addOp(stack_t **stack, unsigned int line_number);
 /*advanced*/
 void subOp(stack_t **stack, unsigned int line_number);
 void divOp(stack_t **stack, unsigned int line_number);
+void modOp(stack_t **stack, unsigned int line_number);
 void mulOp(stack_t **stack, unsigned int line_number);
 /*ops3*/
-void modOp(stack_t **stack, unsigned int line_number);
 void pcharOp(stack_t **stack, unsigned int line_number);
 void pstrOp(stack_t **stack, unsigned int line_number);
 void rotlOp(stack_t **stack, unsigned int line_number);

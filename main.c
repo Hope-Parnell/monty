@@ -82,6 +82,10 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"pop", popOp},
 		{"swap", swapOp},
 		{"add", addOp},
+		{"sub", subOp},
+		{"div", divOp},
+		{"mod", modOp},
+		{"mul", mulOp},
 		{"nop", NULL},
 		{NULL, NULL}
 	};
@@ -89,7 +93,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 	{
 		if (strcmp(opFunction[i].opcode, opCommand[0]) == 0)
 		{
-			if(opFunction[i].f)
+			if (opFunction[i].f)
 				opFunction[i].f(stack, line_number);
 			opCheck = 1;
 			break;
