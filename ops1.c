@@ -24,9 +24,17 @@ void pushOp(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	if (strcmp("queue", opCommand[2]) == 0)
-		new_tail(stack, n);
+	{
+		if (new_tail(stack, n) == NULL)
+		opCommand[3] = "ERROR";
+		return;
+	}
 	else
-		new_head(stack, n);
+	{
+		if (new_head(stack, n) == NULL)
+		opCommand[3] = "ERROR";
+		return;
+	}
 }
 
 /**
