@@ -29,7 +29,7 @@ int main(int ac, char **av)
 
 	fclose(holyGrail);
 	if (opCommand[4])
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 
 }
