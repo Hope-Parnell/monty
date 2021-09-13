@@ -118,6 +118,8 @@ void checkOpcodes(int line_number, stack_t **stack)
 			if (opFunction[i].f)
 				opFunction[i].f(stack, line_number);
 			opCheck = 1;
+			if (opCommand[3])
+				return;
 			break;
 		}
 	}
