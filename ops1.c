@@ -46,8 +46,7 @@ void pushOp(stack_t **stack, unsigned int line_number)
 
 void pallOp(stack_t **stack, unsigned int line_number)
 {
-	if (*stack)
-		printList(*stack);
+	printList(*stack);
 	(void)line_number;
 }
 
