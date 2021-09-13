@@ -15,6 +15,7 @@ stack_t *new_head(stack_t **head, const int n)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
+		free(new);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		opCommand[3] = "ERROR";
 		return (NULL);
@@ -102,6 +103,7 @@ stack_t *new_tail(stack_t **head, const int n)
 	if (!new)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		free(new);
 		opCommand[3] = "ERROR";
 		return (NULL);
 	}
