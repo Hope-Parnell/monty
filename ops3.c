@@ -12,8 +12,7 @@ void pcharOp(stack_t **stack, unsigned int line_number)
 
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pchar, stack empty", line_number);
-		putchar('\n');
+		dprintf(STDERR_FILENO, "L%u: can't pchar, stack empty\n", line_number);
 		opCommand[4] = "ERROR";
 		return;
 	}
@@ -21,9 +20,8 @@ void pcharOp(stack_t **stack, unsigned int line_number)
 	;
 	if ((seek->n < 0) || (seek->n > 127))
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range",
+		dprintf(STDERR_FILENO, "L%u: can't pchar, value out of range\n",
 					 line_number);
-		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
