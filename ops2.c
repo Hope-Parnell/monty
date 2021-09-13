@@ -13,7 +13,7 @@ void addOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't add, stack too short\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	for (hide = *stack; hide->prev; hide = hide->prev)
@@ -37,7 +37,7 @@ void subOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't sub, stack too short\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	for (hide = *stack; hide->prev; hide = hide->prev)
@@ -61,7 +61,7 @@ void divOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't div, stack too short\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	for (hide = *stack; hide->prev; hide = hide->prev)
@@ -69,7 +69,7 @@ void divOp(stack_t **stack, unsigned int line_number)
 	if (hide->n == 0)
 	{
 		dprintf(STDERR_FILENO, "L%u: division by zero\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	seek = hide->next;
@@ -91,7 +91,7 @@ void modOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't mod, stack too short\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	for (hide = *stack; hide->prev; hide = hide->prev)
@@ -99,7 +99,7 @@ void modOp(stack_t **stack, unsigned int line_number)
 	if (hide->n == 0)
 	{
 		dprintf(STDERR_FILENO, "L%u: division by zero\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	seek = hide->next;
@@ -121,7 +121,7 @@ void mulOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't mul, stack too short\n", line_number);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 	for (hide = *stack; hide->prev; hide = hide->prev)

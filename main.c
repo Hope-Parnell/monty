@@ -1,6 +1,6 @@
 #include "monty.h"
 
-char *opCommand[4] = {NULL, NULL, "stack", NULL};
+char *opCommand[] = {NULL, NULL, "stack", NULL};
 
 /**
  * main - main function for monty
@@ -29,7 +29,7 @@ int main(int ac, char **av)
 
 	if (fclose(holyGrail) != 0)
 		exit(EXIT_FAILURE);
-	if (opCommand[4])
+	if (opCommand[3])
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 
@@ -73,7 +73,7 @@ void findOpcodes(FILE *holyGrail)
 			continue;
 		opCommand[1] = strtok(NULL, " \n\t");
 		checkOpcodes(line_number, &stack);
-		if (opCommand[4])
+		if (opCommand[3])
 			break;
 	}
 	if (stack)
@@ -125,7 +125,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 				 line_number, opCommand[0]);
-		opCommand[4] = "ERROR";
+		opCommand[3] = "ERROR";
 		return;
 	}
 }
