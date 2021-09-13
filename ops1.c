@@ -12,14 +12,16 @@ void pushOp(stack_t **stack, unsigned int line_number)
 
 	if (!opCommand[1])
 	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: usage: push integer", line_number);
+		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
 	n = atoi(opCommand[1]);
 	if (n == 0 && opCommand[1][0] != '0')
 	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: usage: push integer", line_number);
+		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
@@ -54,7 +56,8 @@ void pintOp(stack_t **stack, unsigned int line_number)
 
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty", line_number);
+		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
@@ -76,7 +79,8 @@ void popOp(stack_t **stack, unsigned int line_number)
 
 	if (!*stack)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack", line_number);
+		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
@@ -107,7 +111,8 @@ void swapOp(stack_t **stack, unsigned int line_number)
 
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
-		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short", line_number);
+		putchar('\n');
 		opCommand[4] = "ERROR";
 		return;
 	}
