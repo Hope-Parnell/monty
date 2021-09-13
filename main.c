@@ -7,7 +7,7 @@ char *opCommand[] = {NULL, NULL, "stack", NULL};
  * @ac: argument counter
  * @av: array of argument strings
  *
- * Return: success or exit with failure
+ * Return: success exit with failure
  */
 
 int main(int ac, char **av)
@@ -60,18 +60,18 @@ void findOpcodes(FILE *holyGrail)
 			if (opcode[i] == '\n' || lineCheck == 1)
 				break;
 			if (opcode[i] == ' ' || opcode[i] == '\t')
-				lineCheck = 1;
-			else
 				lineCheck = 0;
+			else
+				lineCheck = 1;
 		}
-		if (lineCheck == 1)
+		if (lineCheck == 0)
 			continue;
-		opCommand[0] = strtok(opcode, " \n\t\0");
+		opCommand[0] = strtok(opcode, " \n\t");
 		if (!opCommand[0])
-			opCommand[0] = strtok(NULL, " \n\t\0");
+			opCommand[0] = strtok(NULL, " \n\t");
 		if (opCommand[0][0] == '#')
 			continue;
-		opCommand[1] = strtok(NULL, " \n\t\0");
+		opCommand[1] = strtok(NULL, " \n\t");
 		checkOpcodes(line_number, &stack);
 		if (opCommand[3])
 			break;
