@@ -39,32 +39,6 @@ stack_t *new_head(stack_t **head, const int n)
 }
 
 /**
- * printList - prints the contents of a doubly linked list
- * @h: pointer to a node in the list
- *
- * Return: number of nodes in the list
- */
-
-size_t printList(const stack_t *h)
-{
-	stack_t *seek, *head;
-	size_t nodes;
-
-	if (!h)/*check if list is NULL*/
-		return (0);
-	head = (stack_t *)h;
-	while (head->prev) /*find the head*/
-		head = head->prev;
-	seek = head;
-	for (nodes = 0; seek != NULL; nodes++)/*increment nodes until NULL*/
-	{
-		printf("%d\n", seek->n);/*print each integer*/
-		seek = seek->next;
-	}
-	return (nodes);
-}
-
-/**
  * freeList - frees all nodes in a doubly linked list
  *
  * @head: pointer to the list

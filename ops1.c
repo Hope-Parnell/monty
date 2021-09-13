@@ -46,7 +46,21 @@ void pushOp(stack_t **stack, unsigned int line_number)
 
 void pallOp(stack_t **stack, unsigned int line_number)
 {
-	printList(*stack);
+	stack_t *seek, *head;
+	size_t nodes;
+
+	if (!*stack)/*check if list is NULL*/
+		return;
+	head = *stack;
+	while (head->prev) /*find the head*/
+		head = head->prev;
+	seek = head;
+	for (nodes = 0; seek != NULL; nodes++)/*increment nodes until NULL*/
+	{
+		printf("%d\n", seek->n);/*print each integer*/
+		seek = seek->next;
+	}
+	return;
 	(void)line_number;
 }
 

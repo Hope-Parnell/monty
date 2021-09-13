@@ -32,7 +32,6 @@ int main(int ac, char **av)
 	if (opCommand[3])
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
-
 }
 
 /**
