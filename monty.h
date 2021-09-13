@@ -44,7 +44,6 @@ void findOpcodes(FILE *holyGrail);
 void checkOpcodes(int line_number, stack_t **stack);
 /*linkedList*/
 stack_t *new_head(stack_t **head, const int n);
-size_t printList(const stack_t *h);
 void freeList(stack_t *head);
 stack_t *new_tail(stack_t **head, const int n);
 /*ops1*/
