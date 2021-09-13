@@ -43,30 +43,27 @@ void findOpcodes(FILE *holyGrail)
 {
 	int lineCheck = 0, i;
 	unsigned int line_number;
-	size_t opLenth = 32;
-	char *opcode;
+	size_t opLenth = 0;
+	char *opcode = NULL;
 	stack_t *stack = NULL;
 
-	opcode = malloc(sizeof(char) * opLenth);
-	if (!opcode)
-	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		opCommand[3] = "ERROR";
-		return; }
 	for (line_number = 1; ; line_number++)
 	{
 		lineCheck = getline(&opcode, &opLenth, holyGrail);
 		if (lineCheck == EOF)
 			break;
+		if (lineCheck == 1)
+			continue;
 		for (i = 0; opcode[0] != '\0'; i++)
 		{
-			if (opcode[i] == '\n' || lineCheck == 0)
+			if (opcode[i] == '\n' || lineCheck == 1)
 				break;
 			if (opcode[i] == ' ' || opcode[i] == '\t')
-				lineCheck = 1;
+				lineCheck = 0;
 			else
-				lineCheck = 0; }
-		if (lineCheck == 1)
+				lineCheck = 1;
+		}
+		if (lineCheck == 0)
 			continue;
 		opCommand[0] = strtok(opcode, " \n\t");
 		if (!opCommand[0])
@@ -76,10 +73,12 @@ void findOpcodes(FILE *holyGrail)
 		opCommand[1] = strtok(NULL, " \n\t");
 		checkOpcodes(line_number, &stack);
 		if (opCommand[3])
-			break; }
+			break;
+	}
 	if (stack)
 		freeList(stack);
-	free(opcode); }
+	free(opcode);
+}
 
 /**
  * checkOpcodes - checks for and runs the opcode
