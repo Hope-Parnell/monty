@@ -27,7 +27,8 @@ int main(int ac, char **av)
 	}
 	findOpcodes(holyGrail);
 
-	fclose(holyGrail);
+	if (fclose(holyGrail) != 0)
+		exit(EXIT_FAILURE);
 	if (opCommand[4])
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
