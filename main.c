@@ -1,10 +1,6 @@
 #include "monty.h"
 
-
-void test(void);
-
 char *opCommand[3] = {NULL, NULL, "stack"};
-
 
 /**
  * main - main function for monty
@@ -43,7 +39,7 @@ int main(int ac, char **av)
 
 void findOpcodes(FILE *holyGrail)
 {
-	int lineCheck = 0;
+	int lineCheck = 0, i;
 	unsigned int line_number;
 	size_t opLenth = 0;
 	char *opcode = NULL;
@@ -54,6 +50,19 @@ void findOpcodes(FILE *holyGrail)
 		lineCheck = getline(&opcode, &opLenth, holyGrail);
 		if (lineCheck == EOF)
 			break;
+		if (lineCheck == 1)
+			continue;
+		for (i = 0; opcode[0] != '\0'; i++)
+		{
+			if (opcode[i] == '\n' || lineCheck == 1)
+				break;
+			if (opcode[i] == ' ')
+				lineCheck = 0;
+			else
+				lineCheck = 1;
+		}
+		if (lineCheck == 0)
+			continue;
 		opCommand[0] = strtok(opcode, " \n");
 		if (!opCommand[0])
 			opCommand[0] = strtok(NULL, " \n");
