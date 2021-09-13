@@ -32,8 +32,9 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	else
 	{
 		if (new_head(stack, n) == NULL)
-		opCommand[3] = "ERROR";
-		return;
+		{
+			opCommand[3] = "ERROR";
+			return; }
 	}
 }
 
