@@ -1,0 +1,24 @@
+push 6
+push 2
+pall
+push 95
+pchar
+pop
+mod
+pall
+push 95
+pchar
+pop
+push 30
+push 7
+pall
+push 95
+pchar
+pop
+mod
+pall
+push 95
+pchar
+pop
+mod
+pall

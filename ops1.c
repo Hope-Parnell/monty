@@ -13,13 +13,15 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	if (!opCommand[1])
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 	n = atoi(opCommand[1]);
 	if (n == 0 && opCommand[1][0] != '0')
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 	if (strcmp("queue", opCommand[2]) == 0)
 		new_tail(stack, n);
@@ -53,7 +55,8 @@ void pintOp(stack_t **stack, unsigned int line_number)
 	if (!*stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 	seek = *stack;
 	while (seek->prev)
@@ -74,7 +77,8 @@ void popOp(stack_t **stack, unsigned int line_number)
 	if (!*stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 	hide = *stack;
 	while (hide->prev)
@@ -104,7 +108,8 @@ void swapOp(stack_t **stack, unsigned int line_number)
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{
 		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 	for (seek = *stack; seek->prev; seek = seek->prev)
 	;

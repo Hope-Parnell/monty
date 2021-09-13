@@ -1,0 +1,24 @@
+push 6
+push 2
+pall
+push 47
+pchar
+pop
+div
+pall
+push 95
+pchar
+pop
+push 21
+push 7
+pall
+push 47
+pchar
+pop
+div
+pall
+push 47
+pchar
+pop
+div
+pall

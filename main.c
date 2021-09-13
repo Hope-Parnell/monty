@@ -1,6 +1,6 @@
 #include "monty.h"
 
-char *opCommand[3] = {NULL, NULL, "stack"};
+char *opCommand[4] = {NULL, NULL, "stack", NULL};
 
 /**
  * main - main function for monty
@@ -28,6 +28,8 @@ int main(int ac, char **av)
 	findOpcodes(holyGrail);
 
 	fclose(holyGrail);
+	if (opCommand[4])
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 
 }
@@ -56,20 +58,22 @@ void findOpcodes(FILE *holyGrail)
 		{
 			if (opcode[i] == '\n' || lineCheck == 1)
 				break;
-			if (opcode[i] == ' ')
+			if (opcode[i] == ' ' || opcode[i] == '\t')
 				lineCheck = 0;
 			else
 				lineCheck = 1;
 		}
 		if (lineCheck == 0)
 			continue;
-		opCommand[0] = strtok(opcode, " \n");
+		opCommand[0] = strtok(opcode, " \n\t");
 		if (!opCommand[0])
-			opCommand[0] = strtok(NULL, " \n");
+			opCommand[0] = strtok(NULL, " \n\t");
 		if (opCommand[0][0] == '#')
 			continue;
-		opCommand[1] = strtok(NULL, " \n");
+		opCommand[1] = strtok(NULL, " \n\t");
 		checkOpcodes(line_number, &stack);
+		if (opCommand[4])
+			break;
 	}
 	if (stack)
 		freeList(stack);
@@ -120,6 +124,7 @@ void checkOpcodes(int line_number, stack_t **stack)
 	{
 		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 				 line_number, opCommand[0]);
-		exit(EXIT_FAILURE);
+		opCommand[4] = "ERROR";
+		return;
 	}
 }
