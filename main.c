@@ -128,6 +128,5 @@ void checkOpcodes(int line_number, stack_t **stack)
 		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 				 line_number, opCommand[0]);
 		opCommand[3] = "ERROR";
-		return;
-	}
+		return; }
 }
