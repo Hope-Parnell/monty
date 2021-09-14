@@ -13,7 +13,7 @@ stack_t *new_head(stack_t **head, const int n)
 	stack_t *new, *trueHead;
 
 	new = malloc(sizeof(stack_t));
-	if (!new)
+	if (!new)/*malloc failed*/
 	{
 		free(new);
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
@@ -27,7 +27,7 @@ stack_t *new_head(stack_t **head, const int n)
 		new->next = NULL;
 		*head = new;
 	}
-	else
+	else/*connects new to begining*/
 	{
 		trueHead = *head;
 		while (trueHead->prev)/*make sure at actual head*/
@@ -48,12 +48,12 @@ void freeList(stack_t *head)
 {
 	stack_t *hide, *seek;
 
-	if (!head)
+	if (!head)/*there is no list*/
 		return;
 	seek = head;
 	while (seek->prev)/*find true head*/
 		seek = seek->prev;
-	while (seek)
+	while (seek)/*free each node*/
 	{
 		hide = seek;
 		seek = seek->next;
@@ -74,7 +74,7 @@ stack_t *new_tail(stack_t **head, const int n)
 	stack_t *new, *tail;
 
 	new = malloc(sizeof(stack_t));
-	if (!new)
+	if (!new)/*malloc failed*/
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		free(new);
@@ -88,7 +88,7 @@ stack_t *new_tail(stack_t **head, const int n)
 		new->prev = NULL;
 		*head = new;
 	}
-	else
+	else/*connect to end of list*/
 	{
 		tail = *head;
 		while (tail->next)/*find the tail*/

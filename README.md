@@ -1,7 +1,11 @@
 # Monty
 This C program is intended to be an interpreter for monty files
 ## Description
-Monty interpreter designed for use in LINUX
+Monty interpreter designed for use in LINUX. There is a precompilled version called "monty" available or you can compile with all .c files.
+### Compilation
+```
+gcc -Wall -pedantic -Werror -Wextra -std=gnu89 -g *c -o monty
+```
 ### The Monty Language
 The Monty language
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.

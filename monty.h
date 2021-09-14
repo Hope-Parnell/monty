@@ -54,7 +54,6 @@ void popOp(stack_t **stack, unsigned int line_number);
 void swapOp(stack_t **stack, unsigned int line_number);
 /*ops2*/
 void addOp(stack_t **stack, unsigned int line_number);
-/*advanced*/
 void subOp(stack_t **stack, unsigned int line_number);
 void divOp(stack_t **stack, unsigned int line_number);
 void modOp(stack_t **stack, unsigned int line_number);

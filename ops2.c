@@ -19,6 +19,8 @@ void addOp(stack_t **stack, unsigned int line_number)
 	for (hide = *stack; hide->prev; hide = hide->prev)
 	;
 	seek = hide->next;
+	if (hide == *stack)
+		*stack = seek;
 	seek->n = hide->n + seek->n;
 	seek->prev = NULL;
 	free(hide);
@@ -73,6 +75,8 @@ void divOp(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	seek = hide->next;
+	if (hide == *stack)
+		*stack = seek;
 	seek->n = seek->n / hide->n;
 	seek->prev = NULL;
 	free(hide);
@@ -103,6 +107,8 @@ void modOp(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	seek = hide->next;
+	if (hide == *stack)
+		*stack = seek;
 	seek->n = seek->n % hide->n;
 	seek->prev = NULL;
 	free(hide);
@@ -127,6 +133,8 @@ void mulOp(stack_t **stack, unsigned int line_number)
 	for (hide = *stack; hide->prev; hide = hide->prev)
 	;
 	seek = hide->next;
+	if (hide == *stack)
+		*stack = seek;
 	seek->n = seek->n * hide->n;
 	seek->prev = NULL;
 	free(hide);

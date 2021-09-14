@@ -14,22 +14,22 @@ int main(int ac, char **av)
 {
 	FILE *holyGrail;
 
-	if (ac != 2)
+	if (ac != 2)/*check for correct usage*/
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	holyGrail = fopen(av[1], "r");
-	if (!holyGrail)
+	if (!holyGrail)/*check if file could open*/
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	findOpcodes(holyGrail);
+	findOpcodes(holyGrail);/*search through the file for opcodes*/
 
-	if (fclose(holyGrail) != 0)
+	if (fclose(holyGrail) != 0)/*close the file*/
 		exit(EXIT_FAILURE);
-	if (opCommand[3])
+	if (opCommand[3])/*An error occurred*/
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -50,34 +50,34 @@ void findOpcodes(FILE *holyGrail)
 	for (line_number = 1; ; line_number++)
 	{
 		lineCheck = getline(&opcode, &opLenth, holyGrail);
-		if (lineCheck == EOF)
+		if (lineCheck == EOF)/*getline failed*/
 			break;
-		if (lineCheck == 1)
+		if (lineCheck == 1)/*There is only a newline*/
 			continue;
 		for (i = 0; opcode[0] != '\0'; i++)
 		{
 			if (opcode[i] == '\n' || lineCheck == 1)
-				break;
+				break;/*got to end of line or found a possible code*/
 			if (opcode[i] == ' ' || opcode[i] == '\t')
 				lineCheck = 0;
-			else
+			else /*there is a possible code*/
 				lineCheck = 1;
 		}
 		if (lineCheck == 0)
-			continue;
+			continue;/*there were only spaces or tabs*/
 		opCommand[0] = strtok(opcode, " \n\t");
-		if (!opCommand[0])
+		if (!opCommand[0])/*line starts with spaces or tabs*/
 			opCommand[0] = strtok(NULL, " \n\t");
 		if (opCommand[0][0] == '#')
-			continue;
+			continue;/*line is a comment*/
 		opCommand[1] = strtok(NULL, " \n\t");
-		checkOpcodes(line_number, &stack);
-		if (opCommand[3])
+		checkOpcodes(line_number, &stack);/*match input to opcodes*/
+		if (opCommand[3])/*an error occurred*/
 			break;
 	}
-	if (stack)
+	if (stack)/*free the stack*/
 		freeList(stack);
-	if (opcode)
+	if (opcode)/*free the buffer*/
 		free(opcode);
 }
 
@@ -90,7 +90,6 @@ void findOpcodes(FILE *holyGrail)
 void checkOpcodes(int line_number, stack_t **stack)
 {
 	int i, opCheck = 0;
-
 	instruction_t opFunction[] = {
 		{"push", pushOp},
 		{"pall", pallOp},
@@ -111,19 +110,19 @@ void checkOpcodes(int line_number, stack_t **stack)
 		{"nop", NULL},
 		{NULL, NULL}
 	};
+
 	for (i = 0; opFunction[i].opcode != NULL; i++)
-	{
+	{/*input matches an opcode*/
 		if (strcmp(opFunction[i].opcode, opCommand[0]) == 0)
 		{
 			if (opFunction[i].f)
 				opFunction[i].f(stack, line_number);
-			opCheck = 1;
-			if (opCommand[3])
+			if (opCommand[3])/*an error occurred*/
 				return;
-			break;
-		}
+			opCheck = 1;/*an opcode successfully ran*/
+			break; }
 	}
-	if (opCheck != 1)
+	if (opCheck != 1)/*input did not match any opcodes*/
 	{
 		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 				 line_number, opCommand[0]);
