@@ -1,0 +1,4 @@
+#swap with only 1 node
+push 5
+pall
+swap

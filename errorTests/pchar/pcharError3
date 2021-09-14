@@ -1,0 +1,3 @@
+#pchar higher than max ASCII
+push 5247
+pchar

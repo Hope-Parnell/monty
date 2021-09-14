@@ -2,6 +2,7 @@ push 1
 push -2
 push 3
 pall
-push fun
+#invalid argument
+		push fun
 pall
 push 1

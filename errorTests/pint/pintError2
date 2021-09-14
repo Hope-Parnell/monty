@@ -1,0 +1,8 @@
+#push to list, pint, then remove all nodes and try to pint
+push 1
+push 2
+pall
+pop
+pint
+pop
+pint
