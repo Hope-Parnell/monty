@@ -18,9 +18,9 @@ void pushOp(stack_t **stack, unsigned int line_number)
 	}
 	for (n = 0; opCommand[1][n] != '\0'; n++)
 	{
-		if ((opCommand[1][n] == '-') && (opCommand[1][n] == '.'))
+		if ((opCommand[1][n] == '-') || (opCommand[1][n] == '.'))
 			n++;/*go to next char to check for a digit*/
-		if ((opCommand[1][n] < '0') && (opCommand[1][n] > '9'))
+		if (!isdigit(opCommand[1][n]))
 		{
 			dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 			opCommand[3] = "ERROR";
