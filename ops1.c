@@ -17,9 +17,10 @@ void pushOp(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	for (n = 0; opCommand[1][n] != '\0'; n++)
-	{/*check for non-digit input*/
-		if ((opCommand[1][n] < '0') && (opCommand[1][n] > '9')
-				&& (opCommand[1][n] != '-'))
+	{/*check for non-number input*/
+		if (opCommand[1][n] == '-' || opCommand[1][n] == '-')
+		 n++;/*go to next character to check digit*/
+		if ((opCommand[1][n] < '0') && (opCommand[1][n] > '9'))
 		{
 			dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 			opCommand[3] = "ERROR";
