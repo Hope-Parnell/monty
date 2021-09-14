@@ -16,13 +16,17 @@ void pushOp(stack_t **stack, unsigned int line_number)
 		opCommand[3] = "ERROR";
 		return;
 	}
-	n = atoi(opCommand[1]);
-	if (n == 0 && opCommand[1][0] != '0')/*argument was not an integer*/
-	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
-		opCommand[3] = "ERROR";
-		return;
+	for (n = 0; opCommand[1][n] != '\0'; n++)
+	{/*check for non-digit input*/
+		if ((opCommand[1][n] < '0') && (opCommand[1][n] > '9')
+				&& (opCommand[1][n] != '-'))
+		{
+			dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+			opCommand[3] = "ERROR";
+			return;
+		}
 	}
+	n = atoi(opCommand[1]);
 	if (strcmp("queue", opCommand[2]) == 0)/*program is currently a queue*/
 	{/*add to end*/
 		if (new_tail(stack, n) == NULL)
@@ -126,6 +130,7 @@ void popOp(stack_t **stack, unsigned int line_number)
 void swapOp(stack_t **stack, unsigned int line_number)
 {
 	stack_t *seek, *swap;
+	int n;
 
 	if (!*stack || (((!(*stack)->prev)) && (!(*stack)->next)))
 	{/*there are less than 2 nodes*/
@@ -136,11 +141,7 @@ void swapOp(stack_t **stack, unsigned int line_number)
 	for (seek = *stack; seek->prev; seek = seek->prev)
 	;/*find the top*/
 	swap = seek->next;
-	if (swap->next)
-		seek->next = swap->next;
-	else
-		seek->next = NULL;
-	swap->prev = NULL;
-	swap->next = seek;
-	seek->prev = swap;
+	n = seek->n;
+	seek->n = swap->n;
+	swap->n = n;
 }
