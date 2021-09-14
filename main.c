@@ -77,7 +77,8 @@ void findOpcodes(FILE *holyGrail)
 	}
 	if (stack)
 		freeList(stack);
-	free(opcode);
+	if (opcode)
+		free(opcode);
 }
 
 /**
