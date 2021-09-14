@@ -51,7 +51,7 @@ julien@ubuntu:~/monty$
 	monty <file>
 ```
 <file\> is the path to the file containing Monty byte code
-###Errors
+### Errors
 All errors will exit with EXIT_FAILURE
 ```
 Error: Can't open file <file>
